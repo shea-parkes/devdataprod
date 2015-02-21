@@ -6,7 +6,7 @@ library(RColorBrewer)
 library(splines)
 library(quantreg)
 data(midwest)
-str(midwest)
+#str(midwest)
 
 CreateDemoPlot <- function(df.spline = 4L, natural = TRUE) {
   
