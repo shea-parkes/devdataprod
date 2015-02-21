@@ -9,7 +9,7 @@ print('Moving into reactive state')
 shinyServer(function(input, output, session) {
   
   output$plot_midwest <- renderPlot({
-    CreateDemoPlog(
+    CreateDemoPlot(
       df.spline = input$df
       ,natural = input$natural
     )

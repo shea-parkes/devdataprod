@@ -8,7 +8,7 @@ library(quantreg)
 data(midwest)
 str(midwest)
 
-CreateDemoPlog <- function(df.spline = 4L, natural = TRUE) {
+CreateDemoPlot <- function(df.spline = 4L, natural = TRUE) {
   
   plot.base <- midwest %>% 
     mutate(percbelowpoverty = percbelowpoverty / 100) %>%
@@ -53,4 +53,4 @@ CreateDemoPlog <- function(df.spline = 4L, natural = TRUE) {
   
 }
 
-## CreateDemoPlog()
+## CreateDemoPlot()
