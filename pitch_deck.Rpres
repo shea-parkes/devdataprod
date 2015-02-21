@@ -1,0 +1,30 @@
+Learn about Splined Regression
+========================================================
+author: Shea Parkes
+
+What is Splined Regression
+========================================================
+Splined regression is a technique for expanding simple regression models to handle non-linear relationships. It has many enhancements over polynomial expansion:
+  * Each data point's influence is limited to only nearby portions of the fit.
+  * The edges of the fit can be constrained to be linear.
+
+Sample Splined Regression Visual
+========================================================
+```{r}
+source('logic.r')
+sample.plot <- CreateDemoPlot()
+plot(CreateDemoPlot())
+```
+
+A Less Useful Fit
+========================================================
+If you're not familiar with splined regression, you can easily make less useful models.  For example:
+```{r}
+less.useful.plot <- CreateDemoPlot(df = 8L, natural = FALSE)
+plot(less.useful.plot)
+```
+
+Learn interactively
+========================================================
+To learn more about the most important paramterizations of splined regression (and to explore changing them interactively) please consider visiting my corresponding Shiny app:
+[https://bias-variance.shinyapps.io/devdataprod/](https://bias-variance.shinyapps.io/devdataprod/)
