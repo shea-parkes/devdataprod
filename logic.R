@@ -10,7 +10,7 @@ str(midwest)
 
 CreateDemoPlog <- function(df.spline = 4L, natural = TRUE) {
   
-  midwest %>% 
+  plot.base <- midwest %>% 
     mutate(percbelowpoverty = percbelowpoverty / 100) %>%
     ggplot(
       aes(
@@ -19,12 +19,6 @@ CreateDemoPlog <- function(df.spline = 4L, natural = TRUE) {
       )
     ) +
     geom_point(alpha = 0.4) +
-    stat_quantile(
-      quantiles = seq(0.1, 0.9, 0.2)
-      ,formula = paste0('y ~ ',ifelse(natural, 'ns', 'bs'), '(x, ', df.spline, ')')
-      ,aes(color = ..quantile..)
-      ,lwd = 1
-    ) +
     scale_x_continuous(
       'Population Density'
       ,trans = log_trans()
@@ -37,13 +31,25 @@ CreateDemoPlog <- function(df.spline = 4L, natural = TRUE) {
       ,labels = percent_format()
       ,breaks = c(0.05,seq(0.1,0.9,0.1))
     ) +
+    theme_light() +
+    ggtitle('Midwest Demographics by County')
+  
+  if(natural == FALSE && df.spline < 3){return(plot.base)}
+  
+  plot.full <- plot.base +
+    stat_quantile(
+      quantiles = seq(0.1, 0.9, 0.2)
+      ,formula = paste0('y ~ ',ifelse(natural, 'ns', 'bs'), '(x, ', df.spline, ')')
+      ,aes(color = ..quantile..)
+      ,lwd = 1
+    ) +
     scale_color_gradientn(
       'Quantile'
       ,colours = tail(brewer.pal(9, 'YlOrRd'), 6)
       ,labels = percent_format()
-    ) +
-    theme_light() +
-    ggtitle('Midwest Demographics by County')
+    )
+  
+  return(plot.full)
   
 }
 
